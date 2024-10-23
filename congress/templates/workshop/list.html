@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Talleres{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h2>Talleres</h2>
+    <a href="{% url 'workshop:create' %}" class="btn">Crear Nuevo</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Capacidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for workshop in workshops %}
+            <tr>
+                <td>{{ workshop.title }}</td>
+                <td>{{ workshop.date }}</td>
+                <td>{{ workshop.initial_hour }} - {{ workshop.final_hour }}</td>
+                <td>{{ workshop.seats }}</td>
+                <td>
+                    <a href="{% url 'workshop:detail' workshop.pk %}"><i class="ri-folder-2-fill"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a href="{% url 'home:home' %}" class="card-link"><i class="ri-home-3-fill"></i></a>
+{% endblock content %}
+    

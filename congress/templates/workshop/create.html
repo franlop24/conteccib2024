@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Taller{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h2>Registrar Taller</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Guardar">
+    </form>
+</div>    
+{% endblock content %}
+    

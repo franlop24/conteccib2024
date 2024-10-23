@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Local APPS
-    'home.apps.HomeConfig'
+    'home.apps.HomeConfig',
+    'workshop.apps.WorkshopConfig'
 ]
 
 MIDDLEWARE = [

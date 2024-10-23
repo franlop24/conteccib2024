@@ -1,0 +1,69 @@
+.helptext, form ul {
+    color: gray;
+    font-size: 0.8em;
+}
+
+.helptext::before { content: ""; }
+
+.errorlist {
+    width: 100%;
+    max-width: 450px;
+    color: lightcoral;
+    font-size: 0.8em;
+}
+
+form input[type="submit"], .btn{
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 10px 40px;
+    border: none;
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+form input[type="submit"].sm, .btn.sm {
+    padding: 10px;
+    margin: 5px;
+    font-weight: normal;
+}
+
+form input[type="submit"]:hover, .btn:hover {
+    background-color: orange;
+    color: black;
+}
+
+form div { 
+    margin: 10px; 
+    display: flex;
+    justify-content: space-between;
+}
+
+form div * { width: 50%; }
+
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form input[type="date"],
+form input[type="password"],
+form input[type="file"], form select,
+form textarea
+{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #acacac;
+}
+
+form input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.s-file div:nth-child(8) { flex-direction: column; }
+.s-file div:nth-child(8) input[type="checkbox"],
+.s-file div:nth-child(8) br,
+.s-file div:nth-child(8) label
+{ display: none; }
+
+.s-file input[type="file"]::after { content: "Archivo"; }
