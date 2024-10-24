@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock title %}
+
+{% block content %}
+<div class="card w-60">
+    <form method="post" class="w-800">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="card-link w-100" value="Iniciar Sesión">
+    </form>
+</div>
+{% endblock %}

@@ -1,9 +1,8 @@
 .helptext, form ul {
     color: gray;
     font-size: 0.8em;
+    display: block;
 }
-
-.helptext::before { content: ""; }
 
 .errorlist {
     width: 100%;
@@ -53,6 +52,20 @@ form textarea
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #acacac;
+}
+
+form.as_p {
+    width: 60%;
+}
+
+form.as_p * {
+    margin: 5px;
+}
+
+form.as_p input[type="text"],
+form.as_p input[type="password"],
+form.as_p input[type="email"]{
+    width: 100%;
 }
 
 form input[type="checkbox"] {

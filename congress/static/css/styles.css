@@ -118,6 +118,8 @@ hr {
     scrollbar-width: none;
 }
 
+.w-60 { width: 60%; }
+
 .w-80 { width: 80%; }
 
 .w-90 { width: 90%; }

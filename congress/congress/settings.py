@@ -48,7 +48,8 @@ INSTALLED_APPS = [
 
     # Local APPS
     'home.apps.HomeConfig',
-    'workshop.apps.WorkshopConfig'
+    'workshop.apps.WorkshopConfig',
+    'participant.apps.ParticipantConfig',
 ]
 
 MIDDLEWARE = [
