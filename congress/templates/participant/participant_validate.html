@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Valida Participante{% endblock title %}    
+
+{% block content %}
+<div class="card">
+    <h2>Validar Participante</h2>
+    <th>{{ participant }}</th>
+    <form class="w-60" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Validar" class="card-link w-100">
+    </form>
+</div>
+<a href="{% url 'participant:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
+{% endblock content %}
+    

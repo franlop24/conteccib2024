@@ -5,8 +5,8 @@
 <div class="card fd">
     <h1>1er Congreso de Tecnología y Ciberseguridad 2024</h1>
     <h2 class="w-100">UTTlaxcala</h2>
-    <a href="">Ingresar</a>
-    <a href="">Registro</a>
+    <a href="{% url 'login' %}">Ingresar</a>
+    <a href="{% url 'participant:register' %}">Registro</a>
     <a href="{% url 'workshop:list' %}">Talleres</a>
 </div>
 {% endblock content %}

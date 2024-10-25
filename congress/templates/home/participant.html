@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home Participante{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h1>participante</h1>
+    {% if request.user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Salir">
+    </form>
+    {% endif %}
+</div>
+{% endblock content %}
+    

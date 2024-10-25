@@ -3,17 +3,6 @@ from django.contrib.auth.models import User
 
 from workshop.models import Workshop
 
-# class Professor(User):
-#     lastname_mat = models.CharField(max_length=50, verbose_name="Apellido materno")
-#     title = models.CharField(max_length=50, verbose_name="Título", default='Ing.')
-    
-#     def get_full_name(self):
-#         return f"{ self.title } { self.first_name } { self.last_name } { self.lastname_mat }"
-
-#     def __str__(self):
-#         return self.get_full_name()
-    
-
 class Participant(User):
     SEMESTERS = [
         ('Primero', 'Primero'),
@@ -31,12 +20,13 @@ class Participant(User):
     enrollment = models.CharField(max_length=10, verbose_name="Matrícula")
     folio = models.CharField(max_length=10, verbose_name="Folio", default='0000')
     is_valid = models.BooleanField(default=False)
-    career = models.CharField(max_length=100, verbose_name="Carrera", default='Ingeniería en Sistemas Computacionales')
-    semester = models.IntegerField(verbose_name="Cuatrimestre", choices=SEMESTERS, default=1)
-    #tutor = models.ForeignKey(Professor, on_delete=models.CASCADE, verbose_name="Tutor", related_name='tutor')
+    career = models.CharField(max_length=100, verbose_name="Carrera", default='IDGS')
+    semester = models.CharField(max_length=15, verbose_name="Cuatrimestre", choices=SEMESTERS, default='Primero')
+    phone = models.CharField(max_length=10, verbose_name="Teléfono", default='0000000000')
     workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE, 
                                  verbose_name="Taller", related_name='workshop',
                                  blank=True, null=True)
+    photo = models.ImageField(upload_to='participants', verbose_name="Foto", blank=True, null=True)
     
     def get_full_name(self):
         return f"{ self.enrollment } { self.first_name } { self.last_name } { self.lastname_mat }"
