@@ -5,7 +5,9 @@
 {% block content %}
 <div class="card">
     <h2>Talleres</h2>
-    <a href="{% url 'workshop:create' %}" class="btn">Crear Nuevo</a>
+    {% if user.is_authenticated and user.is_superuser %}
+        <a href="{% url 'workshop:create' %}" class="btn">Crear Nuevo</a>
+    {% endif %}
     <table>
         <thead>
             <tr>

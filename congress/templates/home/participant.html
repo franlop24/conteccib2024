@@ -4,7 +4,9 @@
 
 {% block content %}
 <div class="card">
-    <h1>participante</h1>
+    <h2>Participante: {{ user.participant }}</h2>
+    <a href="{% url 'workshop:list' %}" class="card-link">Talleres</a>
+    <a href="" class="card-link"><i class="ri-user-3-fill"></i></a>
     {% if request.user.is_authenticated %}
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
