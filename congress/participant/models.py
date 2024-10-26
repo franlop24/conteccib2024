@@ -3,6 +3,12 @@ from django.contrib.auth.models import User
 
 from workshop.models import Workshop
 
+def custom_upload_to(instance, filename):
+    if instance.pk:
+        old_instance = Participant.objects.get(pk=instance.pk)
+        old_instance.photo.delete()
+    return f'participants/{instance.pk}/{filename}'
+
 class Participant(User):
     SEMESTERS = [
         ('Primero', 'Primero'),
@@ -26,10 +32,10 @@ class Participant(User):
     workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE, 
                                  verbose_name="Taller", related_name='workshop',
                                  blank=True, null=True)
-    photo = models.ImageField(upload_to='participants', verbose_name="Foto", blank=True, null=True)
+    photo = models.ImageField(upload_to=custom_upload_to, verbose_name="Foto", blank=True, null=True)
     
     def get_full_name(self):
-        return f"{ self.enrollment } { self.first_name } { self.last_name } { self.lastname_mat }"
+        return f"{ self.first_name } { self.last_name } { self.lastname_mat }"
 
     def __str__(self):
-        return self.get_full_name()
+        return f"{ self.enrollment } {self.get_full_name()}"

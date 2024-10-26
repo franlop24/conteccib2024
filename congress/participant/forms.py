@@ -1,7 +1,8 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Participant
-from django.contrib.auth.forms import UserCreationForm
+from .validators import validate_image
 
     
 class ParticipantCreateForm(UserCreationForm):
@@ -9,10 +10,17 @@ class ParticipantCreateForm(UserCreationForm):
         model = Participant
         fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
 
+
 class ParticipantUpdateForm(forms.ModelForm):
     class Meta:
         model = Participant
         fields = ('first_name', 'last_name', 'lastname_mat', 'username', 'email', 'enrollment', 'career', 'semester', 'phone', 'photo')
+
+    def clean_photo(self):
+        photo = self.cleaned_data.get('photo')
+        validate_image(photo)  # Llama a la validación personalizada
+        return photo
+
 
 class SearchParticipantForm(forms.Form):
     search = forms.CharField(max_length=100, required=True, label='Buscar')

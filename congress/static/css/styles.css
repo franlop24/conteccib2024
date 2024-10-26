@@ -133,7 +133,8 @@ hr {
 .h-200 { height: 200px; }
 
 .h-600 {
-    max-height: 600px;
+    height: 600px;
+    padding: 20px;
     overflow: scroll;
     scrollbar-width: none;
 }
@@ -147,4 +148,10 @@ hr {
     text-align: center;
     flex-direction: row; 
     flex-wrap: wrap;
+}
+
+img {
+    width: 200px;
+    height: 230px;
+    border-radius: 50%;
 }

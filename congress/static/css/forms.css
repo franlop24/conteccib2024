@@ -56,6 +56,8 @@ form textarea
 
 form.as_p {
     width: 60%;
+    height: inherit;
+    padding: 10px;
 }
 
 form.as_p * {
@@ -73,10 +75,10 @@ form input[type="checkbox"] {
     height: 20px;
 }
 
-.s-file div:nth-child(8) { flex-direction: column; }
-.s-file div:nth-child(8) input[type="checkbox"],
-.s-file div:nth-child(8) br,
-.s-file div:nth-child(8) label
+.s-file div:nth-child(9) { flex-direction: column; }
+.s-file div:nth-child(9) input[type="checkbox"],
+.s-file div:nth-child(9) br,
+.s-file div:nth-child(9) label
 { display: none; }
 
 .s-file input[type="file"]::after { content: "Archivo"; }

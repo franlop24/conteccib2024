@@ -1,12 +1,13 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Participant
-from .forms import ParticipantCreateForm, SearchParticipantForm, ValidateParticipantForm
+from .forms import (ParticipantCreateForm, SearchParticipantForm, 
+                    ValidateParticipantForm, ParticipantUpdateForm)
 
 class ParticipantCreateView(CreateView):
     model = Participant
@@ -37,6 +38,33 @@ class ParticipantListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['form'] = SearchParticipantForm()
         return context
+
+
+class ParticipantUpdateView(LoginRequiredMixin, UpdateView):
+    model = Participant
+    form_class = ParticipantUpdateForm
+    template_name = 'participant/participant_update.html'
+
+    def get_success_url(self):
+        return reverse_lazy('participant:detail', kwargs={'pk': self.object.pk})
+
+    def get_object(self):
+        return get_object_or_404(Participant, pk=self.kwargs['pk'])
+    
+    def get_context_data(self, **kwargs):
+        context =  super().get_context_data(**kwargs)
+        context['participant'] = self.get_object()
+        return context
+
+
+class ParticipantDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    def test_func(self):
+        return self.request.user.is_staff or self.request.user.participant.pk == self.kwargs['pk']
+    model = Participant
+    template_name = 'participant/participant_detail.html'
+    context_object_name = 'participant'
+
+
 
 @staff_member_required
 @login_required

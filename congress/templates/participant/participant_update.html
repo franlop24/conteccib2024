@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualiza Perfil de Usuario{% endblock %}
+
+{% block content %}
+<div class="card h-600">
+    <h2>Actualiza Perfil de Usuario</h2>
+    <form method="post" enctype="multipart/form-data" class="as_p w-80 s-file">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="card-link w-100" value="Actualizar">
+    </form>
+</div>
+<a href="{% url 'participant:detail' participant.pk %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
+{% endblock %}

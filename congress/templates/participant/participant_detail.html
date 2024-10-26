@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles de Participante{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h2>{{ participant.get_full_name }}
+    </h2>
+    <p>Matrícula: {{ participant.enrollment }}</p>
+    <p>Carrera: {{ participant.career }}</p>
+    <p>Correo: {{ participant.email }}</p>
+    <p>Teléfono: {{ participant.phone }}</p>
+    <p>Cuatrimestre: {{ participant.semester }}</p>
+    {% if participant.photo %}
+        <img src="{{ participant.photo.url }}" alt="{{ participant.get_full_name }}">
+    {% endif %}
+    {% if participant.workshop %}
+    <p>{{ participant.workshop }}</p>
+    {% endif %}
+    <a href="{% url 'participant:update' participant.pk %}" class="card-link"><i class="ri-pencil-fill"></i></a>
+</div>
+<a href="{% url 'home:home' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
+{% endblock content %}
+    
+    
