@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Acceso denegado{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h2>Acceso denegado</h2>
+    <p>No tienes permisos para acceder a esta página.</p>
+    <a href="{% url 'home:home' %}" class="card-link">Volver al inicio</a>
+</div>
+{% endblock %}
