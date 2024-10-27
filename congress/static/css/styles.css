@@ -155,3 +155,34 @@ img {
     height: 230px;
     border-radius: 50%;
 }
+
+@media screen and (max-width: 800px) {
+    .container {
+        width: 100%;
+    }
+    .card {
+        width: 90%;
+    }
+    .w-30 {
+        width: 100%;
+    }
+    .w-60 {
+        width: 100%;
+    }
+    .w-80 {
+        width: 100%;
+    }
+    .w-90 {
+        width: 100%;
+    }
+    .w-100 {
+        width: 100%;
+    }
+    .h-600 {
+        height: 100%;
+    }
+    img {
+        width: 100px;
+        height: 130px;
+    }
+}
