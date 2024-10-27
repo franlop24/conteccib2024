@@ -15,6 +15,9 @@ class ParticipantUpdateForm(forms.ModelForm):
     class Meta:
         model = Participant
         fields = ('first_name', 'last_name', 'lastname_mat', 'username', 'email', 'enrollment', 'career', 'semester', 'phone', 'photo')
+        widgets = {
+            'photo': forms.FileInput(attrs={'required': False})
+        }
 
     def clean_photo(self):
         photo = self.cleaned_data.get('photo')

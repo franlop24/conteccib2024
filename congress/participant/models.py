@@ -22,8 +22,8 @@ class Participant(User):
         ('Noveno', 'Noveno'),
         ('Décimo', 'Décimo'),
     ]
-    lastname_mat = models.CharField(max_length=50, verbose_name="Apellido materno")
-    enrollment = models.CharField(max_length=10, verbose_name="Matrícula")
+    lastname_mat = models.CharField(max_length=50, verbose_name="Apellido materno", null=True, blank=True)
+    enrollment = models.CharField(max_length=10, verbose_name="Matrícula", null=True, blank=True)
     folio = models.CharField(max_length=10, verbose_name="Folio", default='0000')
     is_valid = models.BooleanField(default=False)
     career = models.CharField(max_length=100, verbose_name="Carrera", default='IDGS')

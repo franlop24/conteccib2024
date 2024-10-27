@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
 
 from .models import Workshop
 from .forms import WorkshopForm
@@ -43,3 +44,16 @@ class WorkshopUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = WorkshopForm
     template_name = 'workshop/update.html'
     success_url = reverse_lazy('workshop:list')
+
+@login_required
+def workshop_register(request, pk):
+    if request.method == 'POST':
+        if hasattr(request.user, 'participant'):
+            participant = request.user.participant
+            workshop = get_object_or_404(Workshop, pk=pk)
+            if workshop.available_seats > 0:
+                participant.workshop = workshop
+                participant.save()
+                workshop.seats_occupied += 1
+                workshop.save()
+                return redirect('workshop:detail', pk=pk)

@@ -17,8 +17,19 @@
     <p>Capacidad: <b>{{ workshop.seats }}</b></p>
     <p>Espacios Disponibles: <b>{{ workshop.available_seats }}</b></p>
     {% if not user.is_superuser %}
-        {% if user.participant.is_valid %}
-        <a href="" class="card-link">Inscribirme</a>
+        {% if user.participant.workshop %}
+            <p><b>Ya estás inscrito en este taller</b></p>
+        {% else %}
+            {% if user.participant.is_valid %}
+            <form action="{% url 'workshop:participant_register' workshop.pk %}" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Inscribirme" class="card-link">
+            </form>
+            {% else %}
+                <p><b>Para inscribirte en este taller contacta con el encargado 
+                    <a href=""><i class="ri-whatsapp-line ri-xl"></i></a></b>
+                </p>
+            {% endif %}
         {% endif %}
     {% endif %}
     <a href="{% url 'workshop:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>

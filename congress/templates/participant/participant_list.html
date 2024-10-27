@@ -32,9 +32,9 @@
                 <td>{{ p.semester }}</td>
                 <td>
                     {% if p.is_valid %}
-                    <a href="{% url 'participant:validate' p.pk %}"><i class="ri-check-double-fill"></i></a>
+                    <a href="{% url 'participant:validate' p.pk %}"><i class="ri-check-double-fill ri-xl"></i></a>
                     {% else %}
-                    <a href="{% url 'participant:validate' p.pk %}"><i class="ri-check-line"></i></a>
+                    <a href="{% url 'participant:validate' p.pk %}"><i class="ri-check-line ri-xl"></i></a>
                     {% endif %}
                 </td>
             </tr>

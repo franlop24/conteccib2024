@@ -65,7 +65,6 @@ class ParticipantDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView)
     context_object_name = 'participant'
 
 
-
 @staff_member_required
 @login_required
 def validate_participant(request, pk):
