@@ -14,7 +14,7 @@ class ParticipantCreateForm(UserCreationForm):
 class ParticipantUpdateForm(forms.ModelForm):
     class Meta:
         model = Participant
-        fields = ('first_name', 'last_name', 'lastname_mat', 'username', 'email', 'enrollment', 'career', 'semester', 'phone', 'photo')
+        fields = ('first_name', 'last_name', 'lastname_mat', 'username', 'email', 'tutore', 'career', 'enrollment', 'semester', 'phone', 'photo')
         widgets = {
             'photo': forms.FileInput(attrs={'required': False})
         }

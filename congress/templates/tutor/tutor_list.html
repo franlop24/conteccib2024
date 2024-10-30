@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Tutores{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h3>Tutores</h3>
+    <a href="{% url 'tutor:create' %}" class="btn">Crear Tutor</a>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tutor in tutors %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ tutor.full_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div> 
+<a href="{% url 'home:home' %}" class="card-link"><i class="ri-home-3-fill"></i></a>
+{% endblock content %}
+    
+    

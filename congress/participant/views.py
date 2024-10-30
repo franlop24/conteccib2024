@@ -65,11 +65,11 @@ class ParticipantDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView)
     context_object_name = 'participant'
 
 
-@staff_member_required
+@staff_member_required(login_url='login')
 @login_required
 def validate_participant(request, pk):
-    form = ValidateParticipantForm()
     participant = get_object_or_404(Participant, pk=pk)
+    form = ValidateParticipantForm(instance=participant)
     if request.method == 'POST':
         form = ValidateParticipantForm(request.POST, instance=participant)
         if form.is_valid():

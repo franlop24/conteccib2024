@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'workshop.apps.WorkshopConfig',
     'participant.apps.ParticipantConfig',
+    'tutor.apps.TutorConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
+if DEBUG:
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+else:
+    STATIC_ROOT = BASE_DIR / 'static'
+# STATICFILES_DIRS = [BASE_DIR / 'static'] # Comment in production
 # STATIC_ROOT = BASE_DIR / 'static' # Uncomment in production
 
 

@@ -26,9 +26,11 @@
                 <input type="submit" value="Inscribirme" class="card-link">
             </form>
             {% else %}
+                {% if user.is_authenticated %}
                 <p><b>Para inscribirte en este taller contacta con el encargado 
                     <a href=""><i class="ri-whatsapp-line ri-xl"></i></a></b>
                 </p>
+                {% endif %}
             {% endif %}
         {% endif %}
     {% endif %}

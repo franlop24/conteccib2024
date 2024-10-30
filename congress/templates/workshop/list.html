@@ -11,20 +11,22 @@
     <table>
         <thead>
             <tr>
+                <th>No</th>
                 <th>Nombre</th>
                 <th>Fecha</th>
                 <th>Hora</th>
-                <th>Capacidad</th>
+                <th>Espacios Disponibles</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             {% for workshop in workshops %}
             <tr>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ workshop.title }}</td>
                 <td>{{ workshop.date }}</td>
                 <td>{{ workshop.initial_hour }} - {{ workshop.final_hour }}</td>
-                <td>{{ workshop.seats }}</td>
+                <td>{{ workshop.available_seats }}</td>
                 <td>
                     <a href="{% url 'workshop:detail' workshop.pk %}"><i class="ri-folder-2-fill"></i></a>
                 </td>
