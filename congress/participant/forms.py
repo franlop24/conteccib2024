@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+from tutor.models import Tutor
+
 from .models import Participant
 from .validators import validate_image
 
@@ -26,7 +28,8 @@ class ParticipantUpdateForm(forms.ModelForm):
 
 
 class SearchParticipantForm(forms.Form):
-    search = forms.CharField(max_length=100, required=True, label='Buscar')
+    search = forms.CharField(max_length=100, required=False, label='Buscar')
+    tutor = forms.ModelChoiceField(queryset=Tutor.objects.all(), required=False, label='Tutor')
 
 
 class ValidateParticipantForm(forms.ModelForm):

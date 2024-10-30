@@ -14,6 +14,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>No</th>
                 <th>Nombre Complero</th>
                 <th>Telefono</th>
                 <th>Carrera</th>
@@ -24,6 +25,7 @@
         <tbody>
             {% for p in participants %}
             <tr>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ p }}</td>
                 <td>{{ p.phone }}</td>
                 <td>{{ p.career }}</td>
@@ -51,6 +53,7 @@
         {% endif %}
     </div>
 </div>    
+<a href="{% url 'participant:list' %}" class="card-link w-60"><i class="ri-refresh-line"></i></a>
 <a href="{% url 'home:home' %}" class="card-link w-60"><i class="ri-home-3-fill"></i></a>
 {% endblock content %}
     

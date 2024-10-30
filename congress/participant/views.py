@@ -30,8 +30,11 @@ class ParticipantListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
 
     def get_queryset(self):
         search = self.request.GET.get('search', '')
+        tutor = self.request.GET.get('tutor', '')
         if search:
             return Participant.objects.filter(first_name__icontains=search).order_by('last_name')
+        if tutor:
+            return Participant.objects.filter(tutore=tutor).order_by('last_name')
         return Participant.objects.all().order_by('last_name')
     
     def get_context_data(self, **kwargs):
