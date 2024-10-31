@@ -34,8 +34,34 @@
             {% endif %}
         {% endif %}
     {% endif %}
-    <a href="{% url 'workshop:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
 </div>
+{% if user.is_authenticated and workshop.participants.all and user.is_staff %}
+<div class="card">
+<h3>Participantes Registrados</h3>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Nombre</th>
+            <th>Folio</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for participant in workshop.participants.all %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ participant }}</td>
+            <td>{{ participant.folio }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<script>
+    document.querySelector('main').style.justifyContent = 'normal';
+</script>
+{% endif %}
+<a href="{% url 'workshop:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
 {% endblock content %}
     
     

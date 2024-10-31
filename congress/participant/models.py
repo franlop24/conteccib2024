@@ -25,13 +25,13 @@ class Participant(User):
     ]
     lastname_mat = models.CharField(max_length=50, verbose_name="Apellido materno", null=True, blank=True)
     enrollment = models.CharField(max_length=10, verbose_name="Matrícula", null=True, blank=True, default='-')
-    folio = models.CharField(max_length=10, verbose_name="Folio", default='0000')
+    folio = models.CharField(max_length=10, verbose_name="Folio", unique=True, null=True, blank=True)
     is_valid = models.BooleanField(default=False)
     career = models.CharField(max_length=100, verbose_name="Carrera", default='IDGS')
     semester = models.CharField(max_length=15, verbose_name="Cuatrimestre", choices=SEMESTERS, default='Primero')
     phone = models.CharField(max_length=10, verbose_name="Teléfono", default='0000000000')
     workshop = models.ForeignKey(Workshop, on_delete=models.SET_NULL,
-                                 verbose_name="Taller", related_name='workshop',
+                                 verbose_name="Taller", related_name='participants',
                                  blank=True, null=True)
     photo = models.ImageField(upload_to=custom_upload_to, verbose_name="Foto", blank=True, null=True)
     tutore = models.ForeignKey(Tutor, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Tutor')

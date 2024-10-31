@@ -29,8 +29,6 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center; 
-    /* place-items: center;
-    flex-wrap: nowrap; */
     overflow: scroll;
     scrollbar-width: none;
 }
@@ -156,12 +154,15 @@ img {
     border-radius: 50%;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 850px) {
     .container {
         width: 100%;
     }
     .card {
         width: 90%;
+    }
+    .card-2 {
+        width: 100%;
     }
     .w-30 {
         width: 100%;
