@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from .validators import validate_phone
+
 from workshop.models import Workshop
 from tutor.models import Tutor
 
@@ -24,12 +26,12 @@ class Participant(User):
         ('Décimo', 'Décimo'),
     ]
     lastname_mat = models.CharField(max_length=50, verbose_name="Apellido materno", null=True, blank=True)
-    enrollment = models.CharField(max_length=10, verbose_name="Matrícula", null=True, blank=True, default='-')
+    enrollment = models.CharField(max_length=12, verbose_name="Matrícula", null=True, blank=True, default='-')
     folio = models.CharField(max_length=10, verbose_name="Folio", unique=True, null=True, blank=True)
     is_valid = models.BooleanField(default=False)
     career = models.CharField(max_length=100, verbose_name="Carrera", default='IDGS')
     semester = models.CharField(max_length=15, verbose_name="Cuatrimestre", choices=SEMESTERS, default='Primero')
-    phone = models.CharField(max_length=10, verbose_name="Teléfono", default='0000000000')
+    phone = models.CharField(max_length=10, verbose_name="Teléfono", default='0000000000', validators=[validate_phone])
     workshop = models.ForeignKey(Workshop, on_delete=models.SET_NULL,
                                  verbose_name="Taller", related_name='participants',
                                  blank=True, null=True)

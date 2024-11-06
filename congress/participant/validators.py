@@ -1,4 +1,6 @@
 # validators.py
+import re
+
 from django.core.exceptions import ValidationError
 from PIL import Image
 
@@ -19,3 +21,10 @@ def validate_image(image):
 
         if width > max_width or height > max_height:
             raise ValidationError(f"Las dimensiones máximas permitidas son {max_width}x{max_height} píxeles.")
+
+
+def validate_phone(value):
+    phone_regex = re.compile(r'^\d{10}$')  # Permite solo 10 dígitos
+    if not phone_regex.match(value):
+        raise ValidationError("El número de teléfono no es válido. Deben ser 10 dígitos.")
+    
