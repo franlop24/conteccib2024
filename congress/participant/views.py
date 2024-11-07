@@ -26,7 +26,7 @@ class ParticipantListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Participant
     template_name = 'participant/participant_list.html'
     context_object_name = 'participants'
-    paginate_by = 10
+    paginate_by = 20
 
     def get_queryset(self):
         search = self.request.GET.get('search', '')

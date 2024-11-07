@@ -26,7 +26,7 @@
         <tbody>
             {% for p in participants %}
             <tr>
-                <td>{{ forloop.counter }}</td>
+                <td>{{ forloop.counter|add:page_obj.start_index|add:-1 }}</td>
                 <td>{{ p }}</td>
                 <td>{{ p.phone }}</td>
                 <td>{{ p.career }}</td>
