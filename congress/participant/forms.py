@@ -8,10 +8,10 @@ from .validators import validate_image
 
     
 class ParticipantCreateForm(UserCreationForm):
-    last_name = forms.CharField(max_length=150, label='Apellido paterno')
+    #last_name = forms.CharField(max_length=150, label='Apellido paterno')
     class Meta:
         model = Participant
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class ParticipantUpdateForm(forms.ModelForm):

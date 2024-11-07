@@ -43,7 +43,9 @@ class ParticipantListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         return context
 
 
-class ParticipantUpdateView(LoginRequiredMixin, UpdateView):
+class ParticipantUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    def test_func(self):
+        return self.request.user.is_staff or self.request.user.participant.pk == self.kwargs['pk']
     model = Participant
     form_class = ParticipantUpdateForm
     template_name = 'participant/participant_update.html'
