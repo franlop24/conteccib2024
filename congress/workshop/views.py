@@ -3,6 +3,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Workshop
 from .forms import WorkshopForm
@@ -16,7 +17,8 @@ class WorkshopListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        queryset = [workshop for workshop in queryset if workshop.available_seats > 0]
+        if not self.request.user.is_staff:
+            queryset = [workshop for workshop in queryset if workshop.available_seats > 0]
         return queryset
 
 
@@ -56,4 +58,7 @@ def workshop_register(request, pk):
                 participant.save()
                 workshop.seats_occupied += 1
                 workshop.save()
-                return redirect('workshop:detail', pk=pk)
+            else:
+                messages.error(request, 'Lo sentimos, ya se llenó el taller!')
+                messages.error(request, 'Elige Otro por favor')
+            return redirect('workshop:detail', pk=pk)
