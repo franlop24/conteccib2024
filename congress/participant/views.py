@@ -34,12 +34,12 @@ class ParticipantListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
         if search:
             return Participant.objects.filter(first_name__icontains=search).order_by('last_name')
         if tutor:
-            return Participant.objects.filter(tutore=tutor).order_by('last_name')
-        return Participant.objects.all().order_by('last_name')
+            return Participant.objects.filter(tutore=tutor, first_name__gt='').order_by('-is_valid','last_name')
+        return Participant.objects.filter(first_name__gt='', last_name__gt='').order_by('-is_valid','last_name')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['form'] = SearchParticipantForm()
+        context['form'] = SearchParticipantForm(self.request.GET)
         return context
 
 

@@ -16,9 +16,9 @@
             <tr>
                 <th>No</th>
                 <th>Nombre Completo</th>
-                <th>Teléfono</th>
+                <!-- <th>Teléfono</th> -->
                 <th>Carrera</th>
-                <th>Cuatrimestre</th>
+                <!-- <th>Cuatrimestre</th> -->
                 <th>Folio</th>
                 <th>Acciones</th>
             </tr>
@@ -28,10 +28,16 @@
             <tr>
                 <td>{{ forloop.counter|add:page_obj.start_index|add:-1 }}</td>
                 <td>{{ p }}</td>
-                <td>{{ p.phone }}</td>
+                <!-- <td>{{ p.phone }}</td> -->
                 <td>{{ p.career }}</td>
-                <td>{{ p.semester }}</td>
-                <td>{{ p.folio }}</td>
+                <!-- <td>{{ p.semester }}</td> -->
+                <td>
+                    {% if p.folio %}
+                    {{ p.folio }}
+                    {% else %}
+                    Sin folio
+                    {% endif %}
+                </td>
                 <td>
                     {% if p.is_valid %}
                     <a href="{% url 'participant:validate' p.pk %}"><i class="ri-check-double-fill ri-xl"></i></a>
