@@ -18,7 +18,11 @@
     <p>Espacios Disponibles: <b>{{ workshop.available_seats }}</b></p>
     {% if not user.is_superuser %}
         {% if user.participant.workshop %}
+            {% if workshop == user.participant.workshop %}
             <p><b>Ya estás inscrito en este taller</b></p>
+            {% else %}
+            <p><b>Ya estás inscrito en: {{ user.participant.workshop }}</b></p>
+            {% endif %}
         {% else %}
             {% if user.participant.is_valid and workshop.available_seats > 0 %}
             <form action="{% url 'workshop:participant_register' workshop.pk %}" method="post">

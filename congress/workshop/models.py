@@ -19,8 +19,12 @@ class Workshop(models.Model):
         return self.seats == self.seats_occupied
     
     @property
+    def seats_occuped(self):
+        return self.participants.all().count()
+    
+    @property
     def available_seats(self):
-        return self.seats - self.seats_occupied
+        return self.seats - self.seats_occuped
     
     def __str__(self):
         return self.title
