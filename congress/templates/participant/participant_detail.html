@@ -15,7 +15,7 @@
         <img src="{{ participant.photo.url }}" alt="{{ participant.get_full_name }}">
     {% endif %}
     {% if participant.workshop %}
-    <p>Tarrer: {{ participant.workshop }}</p>
+    <p>Taller: {{ participant.workshop }}</p>
     {% endif %}
     <a href="{% url 'participant:update' participant.pk %}" class="card-link"><i class="ri-pencil-fill"></i></a>
 </div>
