@@ -17,8 +17,8 @@ class WorkshopListView(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if not self.request.user.is_staff:
-            queryset = [workshop for workshop in queryset if workshop.available_seats > 0]
+        # if not self.request.user.is_staff:
+        #     queryset = [workshop for workshop in queryset if workshop.available_seats > 0]
         return queryset
 
 

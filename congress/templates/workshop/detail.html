@@ -14,6 +14,7 @@
     <p>Ponente: <b>{{ workshop.title_ponent }} {{ workshop.name_ponent }}</b></p>
     <p>Fecha: <b>{{ workshop.date }}</b></p>
     <p>Horario: <b>{{ workshop.initial_hour }} - {{ workshop.final_hour }}</b></p>
+    <p>Lugar: <b>{{ workshop.place }}</b></p>
     <p>Capacidad: <b>{{ workshop.seats }}</b></p>
     <p>Espacios Disponibles: <b>{{ workshop.available_seats }}</b></p>
     {% if not user.is_superuser %}
