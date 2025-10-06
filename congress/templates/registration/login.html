@@ -4,11 +4,13 @@
 
 {% block content %}
 <div class="card w-60">
+    <h1>Login</h1>
     <form method="post" class="w-800">
         {% csrf_token %}
         {{ form }}
         <input type="submit" class="card-link w-100" value="Iniciar Sesión">
     </form>
+    <a href="{% url 'password_reset' %}">Recuperar contraseña</a>
 </div>
 <a href="{% url 'home:home' %}" class="card-link w-60"><i class="ri-home-3-fill"></i></a>
 {% endblock %}

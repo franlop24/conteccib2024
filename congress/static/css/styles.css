@@ -23,11 +23,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 main {
+    padding: 20px 0;
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center; 
+    gap: 20px;
 }
 
 a {
