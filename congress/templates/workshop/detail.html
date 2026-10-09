@@ -46,8 +46,8 @@
 </div>
 {% if user.is_authenticated and workshop.participants.all and user.is_staff %}
 <div class="card">
-<h3>Participantes Registrados</h3>
-<table>
+<h3>Participantes Registrados <i class="ri-file-copy-line" onclick="copyTable('tabla-taller')" style="cursor:pointer;"></i></h3>
+<table id="tabla-taller">
     <thead>
         <tr>
             <th>No</th>
@@ -68,6 +68,20 @@
 </div>
 <script>
     document.querySelector('main').style.justifyContent = 'normal';
+    function copyTable(tableId) {
+        const table = document.getElementById(tableId);
+        let range = document.createRange();
+        range.selectNode(table);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        try {
+            document.execCommand('copy');
+            alert('Tabla copiada al portapapeles');
+        } catch (err) {
+            alert('Error al copiar la tabla');
+        }
+        window.getSelection().removeAllRanges();
+    }
 </script>
 {% endif %}
 <a href="{% url 'workshop:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>

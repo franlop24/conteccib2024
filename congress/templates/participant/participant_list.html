@@ -10,8 +10,8 @@
     </form>
 </div>
 <div class="card">
-    <h2>Lista de Participantes</h2>
-    <table class="table">
+    <h2>Lista de Participantes <i class="ri-file-copy-line" onclick="copyTable('tabla-participantes')" style="cursor:pointer;"></i></h2>
+    <table class="table" id="tabla-participantes">
         <thead>
             <tr>
                 <th>No</th>
@@ -63,6 +63,22 @@
 </div>    
 <a href="{% url 'participant:list' %}" class="card-link w-60"><i class="ri-refresh-line"></i></a>
 <a href="{% url 'home:home' %}" class="card-link w-60"><i class="ri-home-3-fill"></i></a>
+<script>
+    function copyTable(tableId) {
+        const table = document.getElementById(tableId);
+        let range = document.createRange();
+        range.selectNode(table);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        try {
+            document.execCommand('copy');
+            alert('Tabla copiada al portapapeles');
+        } catch (err) {
+            alert('Error al copiar la tabla');
+        }
+        window.getSelection().removeAllRanges();
+    }
+</script>
 {% endblock content %}
     
     

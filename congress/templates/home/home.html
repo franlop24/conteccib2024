@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Home{% endblock title %}
 
 {% block content %}
 <div class="card fd">
-    <h1>1er Congreso de Tecnología y Ciberseguridad 2025</h1>
-    <h2 class="w-100">UTTlaxcala</h2>
+    <img src="{% static 'img/portada.jpg' %}" alt="Portada" class="portada-img">
+    <h1 class="w-100">CTCS - UTTlaxcala</h1>
     <a href="{% url 'login' %}">Ingresar</a>
     <a href="{% url 'participant:register' %}">Registro</a>
     <a href="{% url 'workshop:list' %}">Talleres</a>
