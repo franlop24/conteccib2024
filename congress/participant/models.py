@@ -1,16 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 
 from .validators import validate_phone
 
 from workshop.models import Workshop
 from tutor.models import Tutor
-
-def custom_upload_to(instance, filename):
-    if instance.pk:
-        old_instance = Participant.objects.get(pk=instance.pk)
-        old_instance.photo.delete()
-    return f'participants/{instance.pk}/{filename}'
 
 class Participant(User):
     SEMESTERS = [
@@ -35,7 +30,12 @@ class Participant(User):
     workshop = models.ForeignKey(Workshop, on_delete=models.SET_NULL,
                                  verbose_name="Taller", related_name='participants',
                                  blank=True, null=True)
-    photo = models.ImageField(upload_to=custom_upload_to, verbose_name="Foto", blank=True, null=True)
+    photo = CloudinaryField(
+        verbose_name='Foto',
+        blank=True,
+        null=True,
+        folder='participantes',
+    )
     tutore = models.ForeignKey(Tutor, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Tutor')
     
     def get_full_name(self):

@@ -2,3 +2,5 @@ django
 pymysql
 python-dotenv
 pillow
+cloudinary
+django-cloudinary-storage

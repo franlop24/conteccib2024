@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'workshop.apps.WorkshopConfig',
     'participant.apps.ParticipantConfig',
     'tutor.apps.TutorConfig',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -146,6 +148,28 @@ else:
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET'),
+}
+
+# CloudinaryField (from the Cloudinary SDK) reads the CLOUDINARY settings dict.
+CLOUDINARY = {
+    'cloud_name': os.getenv('CLOUD_NAME'),
+    'api_key': os.getenv('API_KEY'),
+    'api_secret': os.getenv('API_SECRET'),
+}
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'

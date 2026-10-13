@@ -2,29 +2,29 @@
 import re
 
 from django.core.exceptions import ValidationError
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 
 def validate_image(image):
-    # Validar tamaño en KB
-    max_size_kb = 800  # Tamaño máximo en KB
-    if image:
-        if image.size > max_size_kb * 1024:
-            raise ValidationError(f"El tamaño máximo permitido para la imagen es de {max_size_kb}KB.")
+    if not image:
+        return
 
-        # Validar dimensiones (ancho y alto)
-        max_width = 640  # Ancho máximo en píxeles
-        max_height = 720  # Alto máximo en píxeles
+    max_size_mb = 2
+    if image.size > max_size_mb * 1024 * 1024:
+        raise ValidationError(
+            f"El tamaño máximo permitido para la imagen es de {max_size_mb} MB."
+        )
 
-        # Abrir la imagen con Pillow
-        img = Image.open(image)
-        width, height = img.size
-
-        if width > max_width or height > max_height:
-            raise ValidationError(f"Las dimensiones máximas permitidas son {max_width}x{max_height} píxeles.")
+    try:
+        image.seek(0)
+        with Image.open(image) as opened_image:
+            opened_image.verify()
+    except (UnidentifiedImageError, OSError, Image.DecompressionBombError):
+        raise ValidationError("El archivo no es una imagen válida o está dañado.")
+    finally:
+        image.seek(0)
 
 
 def validate_phone(value):
     phone_regex = re.compile(r'^\d{10}$')  # Permite solo 10 dígitos
     if not phone_regex.match(value):
         raise ValidationError("El número de teléfono no es válido. Deben ser 10 dígitos.")
-    

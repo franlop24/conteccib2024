@@ -11,7 +11,20 @@
         {% endif %}
     </h2>
     <p>Descripción: <b>{{ workshop.description }}</b></p>
-    <p>Ponente: <b>{{ workshop.title_ponent }} {{ workshop.name_ponent }}</b></p>
+    <section class="instructor-details">
+        <h3>Ponente</h3>
+        {% if workshop.instructor %}
+            {% if workshop.instructor.photo %}
+            <img class="instructor-photo" src="{{ workshop.instructor.photo.url }}" alt="Foto de {{ workshop.instructor }}">
+            {% endif %}
+            <p><b>{{ workshop.instructor.title }} {{ workshop.instructor.first_name }} {{ workshop.instructor.last_name }}</b></p>
+            {% if workshop.instructor.semblanza %}
+            <p>{{ workshop.instructor.semblanza }}</p>
+            {% endif %}
+        {% else %}
+            <p>Sin ponente asignado</p>
+        {% endif %}
+    </section>
     <p>Fecha: <b>{{ workshop.date }}</b></p>
     <p>Horario: <b>{{ workshop.initial_hour }} - {{ workshop.final_hour }}</b></p>
     <p>Lugar: <b>{{ workshop.place }}</b></p>

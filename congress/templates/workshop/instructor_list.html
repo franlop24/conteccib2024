@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h1>Lista de Instructores</h1>
+    <a href="{% url 'workshop:instructor_create' %}" class="btn">Crear Instructor</a>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Título académico</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for instructor in instructors %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ instructor.first_name }} {{ instructor.last_name }}</td>
+                <td>{{ instructor.email }}</td>
+                <td>{{ instructor.title|default:"—" }}</td>
+                <td><a href="{% url 'workshop:instructor_update' instructor.pk %}" class="btn sm">Editar</a></td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="5">No hay instructores registrados.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<a href="{% url 'workshop:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Workshop
+from .models import Workshop, Instructor
 
 class WorkshopForm(forms.ModelForm):
     class Meta:
@@ -12,4 +12,17 @@ class WorkshopForm(forms.ModelForm):
             'date': forms.DateInput(attrs={'type': 'date'}, format='%Y-%m-%d'),
             'initial_hour': forms.TimeInput(attrs={'type': 'time'}),
             'final_hour': forms.TimeInput(attrs={'type': 'time'}),
+        }
+
+class InstructorCreateForm(forms.ModelForm):
+    class Meta:
+        model = Instructor
+        fields = ['first_name', 'last_name', 'email', 'title', 'photo', 'semblanza']
+        labels = {
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
+            'email': 'Correo electrónico',
+            'title': 'Título académico',
+            'photo': 'Foto',
+            'semblanza': 'Semblanza'
         }

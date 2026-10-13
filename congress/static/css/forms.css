@@ -1,84 +1,181 @@
-.helptext, form ul {
-    color: gray;
-    font-size: 0.8em;
+/* Django forms and manually authored form fields */
+form {
+    min-width: 0;
+}
+
+form p,
+form div {
+    margin: 0 0 16px;
+}
+
+form p {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+form label {
+    color: var(--text-color, #333);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+form input:not([type="submit"]):not([type="button"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]),
+form select,
+form textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #aeb7b0;
+    border-radius: 6px;
+    background-color: #fff;
+    color: var(--text-color, #333);
+    font: inherit;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+form textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+form input[type="file"] {
+    min-height: auto;
+    padding: 8px;
+}
+
+form input[type="checkbox"],
+form input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin: 0 8px 0 0;
+    accent-color: var(--primary-color, #2d5a27);
+    vertical-align: middle;
+}
+
+form input:focus-visible,
+form select:focus-visible,
+form textarea:focus-visible {
+    outline: 3px solid rgba(45, 90, 39, 0.2);
+    outline-offset: 1px;
+    border-color: var(--primary-color, #2d5a27);
+}
+
+form input:disabled,
+form select:disabled,
+form textarea:disabled {
+    background-color: #f0f2f0;
+    color: #68716a;
+    cursor: not-allowed;
+}
+
+.helptext,
+form .helptext {
     display: block;
+    color: #59635b;
+    font-size: 0.875rem;
+    line-height: 1.45;
+}
+
+form ul {
+    margin: 4px 0 0;
+    padding-left: 20px;
+    color: #59635b;
+    font-size: 0.875rem;
 }
 
 .errorlist {
     width: 100%;
-    max-width: 450px;
-    color: lightcoral;
-    font-size: 0.8em;
+    max-width: none;
+    margin: 4px 0 0;
+    padding: 0;
+    color: #a32323;
+    font-size: 0.875rem;
+    font-weight: 600;
+    list-style: none;
 }
 
-form input[type="submit"], .btn{
+form input[aria-invalid="true"],
+form select[aria-invalid="true"],
+form textarea[aria-invalid="true"] {
+    border-color: #a32323;
+}
+
+form input[type="submit"],
+.btn {
+    box-sizing: border-box;
     display: inline-block;
-    margin: 10px 10px;
-    padding: 10px 40px;
-    border: none;
-    background-color: green;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
+    width: auto;
+    min-height: 44px;
+    margin: 8px 0;
+    padding: 10px 24px;
+    border: 2px solid var(--primary-color, #2d5a27);
+    border-radius: 6px;
+    background-color: var(--primary-color, #2d5a27);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
-form input[type="submit"].sm, .btn.sm {
-    padding: 10px;
-    margin: 5px;
-    font-weight: normal;
+form input[type="submit"],
+form button,
+form .btn {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-form input[type="submit"]:hover, .btn:hover {
-    background-color: orange;
-    color: black;
+form input[type="submit"]:hover,
+.btn:hover {
+    border-color: var(--secondary-color, #e67e22);
+    background-color: var(--secondary-color, #e67e22);
+    color: #202020;
 }
 
-form div { 
-    margin: 10px; 
-    display: flex;
-    justify-content: space-between;
+form input[type="submit"]:focus-visible,
+.btn:focus-visible {
+    outline: 3px solid rgba(45, 90, 39, 0.3);
+    outline-offset: 2px;
 }
 
-form div * { width: 50%; }
-
-form input[type="text"],
-form input[type="email"],
-form input[type="number"],
-form input[type="date"],
-form input[type="password"],
-form input[type="file"], form select,
-form textarea
-{
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #acacac;
+form input[type="submit"].sm,
+.btn.sm {
+    min-height: 36px;
+    padding: 6px 12px;
+    font-weight: 600;
 }
 
 form.as_p {
-    width: 60%;
-    height: inherit;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
     padding: 10px;
 }
 
-form.as_p * {
-    margin: 5px;
+.s-file p:nth-of-type(9) {
+    flex-direction: column;
 }
 
-form.as_p input[type="text"],
-form.as_p input[type="password"],
-form.as_p input[type="email"]{
-    width: 100%;
+.s-file p:nth-of-type(9) input[type="checkbox"],
+.s-file p:nth-of-type(9) br,
+.s-file p:nth-of-type(9) label {
+    display: none;
 }
 
-form input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
+@media (max-width: 600px) {
+    form.as_p,
+    form.w-60,
+    form.w-80,
+    form.w-90 {
+        width: 100%;
+    }
+
+    form input[type="submit"] {
+        width: 100%;
+    }
 }
-
-.s-file div:nth-child(9) { flex-direction: column; }
-.s-file div:nth-child(9) input[type="checkbox"],
-.s-file div:nth-child(9) br,
-.s-file div:nth-child(9) label
-{ display: none; }
-
-.s-file input[type="file"]::after { content: "Archivo"; }

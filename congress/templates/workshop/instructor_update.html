@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Instructor{% endblock title %}
+
+{% block content %}
+<div class="card">
+    <h1>Actualizar Instructor</h1>
+    <form method="post" enctype="multipart/form-data" class="as_p w-80">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar cambios" class="card-link w-100">
+    </form>
+</div>
+<a href="{% url 'workshop:instructor_list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
+{% endblock content %}

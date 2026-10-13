@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h1>Crea Instructor</h1>
+    <form method="post" class="w-80" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar" class="card-link w-100">
+    </form>
+</div>
+<a href="{% url 'workshop:instructor_list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
+{% endblock %}

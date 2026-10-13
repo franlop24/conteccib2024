@@ -30,7 +30,6 @@ def create_tutor(request):
             p.last_name = form.cleaned_data['last_name']
             p.lastname_mat = form.cleaned_data['lastname_mat']
             p.is_staff = True
-            p.is_superuser = True
             p.save()
 
             return redirect('tutor:list')

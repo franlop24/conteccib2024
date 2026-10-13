@@ -8,6 +8,7 @@
     <a  href="{% url 'participant:list' %}" class="card-link">Participantes</a>
     <a  href="{% url 'workshop:list' %}" class="card-link">Talleres</a>
     <a  href="{% url 'tutor:list' %}" class="card-link">Tutores</a>
+    <a  href="{% url 'workshop:instructor_list' %}" class="card-link">Instructores</a>
     {% if request.user.is_authenticated %}
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
