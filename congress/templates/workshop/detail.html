@@ -57,9 +57,14 @@
         {% endif %}
     {% endif %}
 </div>
-{% if user.is_authenticated and workshop.participants.all and user.is_staff %}
+{% if user.is_authenticated and workshop.participants.all %}
+{% if user.is_staff or user.participant.workshop == workshop %}
 <div class="card">
-<h3>Participantes Registrados <i class="ri-file-copy-line" onclick="copyTable('tabla-taller')" style="cursor:pointer;"></i></h3>
+<h3>Participantes Registrados
+    {% if user.is_staff %}
+    <i class="ri-file-copy-line" onclick="copyTable('tabla-taller')" style="cursor:pointer;"></i>
+    {% endif %}
+</h3>
 <table id="tabla-taller">
     <thead>
         <tr>
@@ -79,6 +84,7 @@
     </tbody>
 </table>
 </div>
+{% if user.is_staff %}
 <script>
     document.querySelector('main').style.justifyContent = 'normal';
     function copyTable(tableId) {
@@ -96,6 +102,8 @@
         window.getSelection().removeAllRanges();
     }
 </script>
+{% endif %}
+{% endif %}
 {% endif %}
 <a href="{% url 'workshop:list' %}" class="card-link"><i class="ri-arrow-go-back-fill"></i></a>
 {% endblock content %}
